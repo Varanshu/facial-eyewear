@@ -1,16 +1,13 @@
 import "./styles.css";
 import image from "./portrait.jpg";
 import faceLandmarker from "./facelandmarks.json";
+import { useState } from "react";
 
 export default function App() {
-    const handleClick = (event) => {
-        if (document.getElementById("eyewear-image")) {
-            console.log(typeof document);
-            document
-                .querySelector(".detectOnClick")
-                .removeChild(document.getElementById("eyewear-image"));
-        }
 
+    const [glasses, setGlasses] = useState(false)
+
+    const wearEyewear = () => {
         const eyewearElement = document.createElement("img");
         eyewearElement.id = "eyewear-image";
         eyewearElement.src =
@@ -54,11 +51,24 @@ export default function App() {
         eyewearElement.style.top = eyewearY + "px";
         eyewearElement.style.width = eyewearWidth + "px";
         eyewearElement.style.height = eyewearHeight + "px";
+        setGlasses(true)
+    }
+
+    const handleClick = (event) => {
+        if (document.getElementById("eyewear-image") || glasses) {
+            console.log(typeof document);
+            document
+                .querySelector(".detectOnClick")
+                .removeChild(document.getElementById("eyewear-image"));
+            setGlasses(false)
+        } else
+            wearEyewear()
+
     };
 
     return (
         <div className="App">
-            <button onClick={(e) => handleClick(e.target)}> Test Glasses </button>
+            <button className="button" onClick={(e) => handleClick(e.target)}> {!glasses ? 'Show with Glasses' : 'Remove Glasses'} </button>
             <div className="detectOnClick">
                 <img src={image} alt="profile" id="image" />
             </div>
