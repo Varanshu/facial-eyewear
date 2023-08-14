@@ -1,0 +1,13 @@
+.detectOnClick {
+  z-index: 0;
+  position: relative;
+}
+
+#eyewear-image {
+  position: absolute;
+}
+
+#image {
+  height: 868px;
+  width: 695px;
+}
