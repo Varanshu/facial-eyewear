@@ -13,6 +13,7 @@ export default function App() {
         eyewearElement.src =
             "https://mirrar.s3.ap-south-1.amazonaws.com/3d-demo/RAYBAN_ANDYFull_Rim_SquareSunglasses/RAYBAN_ANDYFull_Rim_SquareSunglasses.png";
         document.querySelector(".detectOnClick").appendChild(eyewearElement);
+
         const landmarksArray = faceLandmarker.faceLandmarks[0];
         const relativeShape = (dimensions) => {
             const { x, y } = dimensions;
@@ -25,7 +26,7 @@ export default function App() {
         const eyeLeft = relativeShape(landmarksArray[33]);
         const eyeRight = relativeShape(landmarksArray[263]);
 
-        const calulateEarHeight = () => {
+        const calulateEyewearHeight = () => {
             const width = (landmarksArray[177].y - landmarksArray[139].y) * 868;
             return width;
         };
@@ -43,7 +44,7 @@ export default function App() {
         const eyesCenterY = (eyeLeft.y + eyeRight.y) / 2;
 
         const eyewearWidth = calulateWidth();
-        const eyewearHeight = calulateEarHeight();
+        const eyewearHeight = calulateEyewearHeight();
         const eyewearX = eyesCenterX - eyewearWidth / 2;
         const eyewearY = eyesCenterY - eyewearHeight / 2;
 
