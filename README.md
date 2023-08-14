@@ -1,8 +1,23 @@
 # MirrAR Assessment - [Netlify](https://mirrar-eyewear.netlify.app/)
 
+
+## Eyewear Overlap Functionality Implementation
+This document outlines the steps taken to implement the eyewear overlap functionality:
+
+### Steps:
+* ***Dynamic Image Tag Creation:*** Utilized JavaScript to dynamically create an image tag and set the image source using the src attribute.
+
+* ***Eye Coordinates Acquisition:*** Extracted eye coordinates from the provided mesh data.
+
+* ***Center Coordinate Calculation:*** Calculated the central X and Y coordinates of the eyes based on the mesh data.
+
+* ***Eyewear Height Calculation:*** Determined the eyewear height using the relevant coordinates obtained from the mesh.
+
+* ***Eyewear Width Calculation:*** Computed the eyewear width using the extracted eye coordinates.
+
 ## Eyewear Rendering Using Facial Landmark Points
 
-## Installation
+### Installation
 
 Install the dependencies for the project.
 
@@ -10,16 +25,15 @@ Install the dependencies for the project.
 npm install
 ```
 
-## Create Image Element
+### Create Image Element
 ```javascript
         const eyewearElement = document.createElement("img");
         eyewearElement.id = "eyewear-image";
         eyewearElement.src = image-url;
         document.querySelector(".detectOnClick").appendChild(eyewearElement);
-
 ```
 
-## Get keys points from the Face Mesh
+### Get keys points from the Face Mesh
 
 * Left most eye coordinate
 ```javascript
@@ -30,7 +44,7 @@ npm install
         relativeShape(landmarksArray[263])
 ```
 
-## Calculate key values
+### Calculate key values
 
 * X axis Center of the eyes
 ```javascript
@@ -67,7 +81,7 @@ npm install
         eyesCenterY - eyewearHeight / 2
 ```
 
-### Helper Functions
+#### Helper Functions
 
 ```javascript
         const relativeShape = (dimensions) => {
@@ -79,7 +93,7 @@ npm install
         };
 ```
 
-## Assign the values
+### Assign the values
 ```javascript
         eyewearElement.style.left = eyewearX + "px";
         eyewearElement.style.top = eyewearY + "px";
